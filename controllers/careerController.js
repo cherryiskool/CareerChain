@@ -1,3 +1,5 @@
+const careerModel = require('../models/careerModel')
+
 exports.getHomePage = (req, res) => {
     try {
         res.render('homepage', {pageTitle: 'Homepage', pageContent: 'Homepage for CareerChain Website'});
@@ -22,11 +24,24 @@ exports.getRegisterPage = (req, res) => {
     }
 }
 
-exports.registerAttempt = (req, res) => {
+exports.registerAttempt = async (req, res) => {
     try {
-        
-    } catch (err) {
+        console.log('testing shit', req.body);
+        const username = req.body.username;
+        const password = req.body.password;
+        const walletAddress = req.body.walletAddress;
 
+        if (req.body.walletAddress == null || req.body.walletAddress == '') {
+            req.flash('error', 'Please connect to MetaMask');
+            res.redirect('/register')
+        }
+
+        await careerModel.registerUserToDatabase(username, password, walletAddress);
+
+        res.redirect('/')
+    } catch (err) {
+        req.flash('error', 'User Details Taken');
+        res.redirect('/register')
     }
 }
 
@@ -34,7 +49,7 @@ exports.getProfilePage = (req, res) => {
     try {
         res.render('profile', {pageTitle: req.params.username, pageContent: `${req.params.username}'s Profile Page`});
     } catch (err) {
-
+        res.redirect('/error');
     }
 }
 

@@ -21,8 +21,6 @@ const options = {
 
 const sessionStore = new MySQLStore(options);
 
-const careerRouter = require('./routes/career');
-
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 app.set('layout', 'layouts/layout');
@@ -30,9 +28,9 @@ app.use(expressLayouts);
 
 // tells express to use this directory for files
 app.use(express.static('public'));
-
-app.use(express.urlencoded({limit: '1mb', extended: false}));
 app.use(express.json());
+app.use(express.urlencoded({limit: '1mb', extended: false}));
+
 app.use(flash());
 
 app.use(session({
@@ -56,6 +54,7 @@ app.use(function(req, res, next) {
   next();
 })
 
+const careerRouter = require('./routes/career');
 app.use('/', careerRouter);
 
 const port = process.env.PORT || 3000;

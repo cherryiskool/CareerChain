@@ -6,9 +6,9 @@ const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 
 // here we will define the authentication
-passport.use(new LocalStrategy(async function verify(walletAddress, password, cb) {
+passport.use(new LocalStrategy({usernameField: 'walletAddress'}, async function verify(walletAddress, password, cb) {
   try {
-  [row] = await db.query('SELECT * FROM users WHERE email = ?', [ walletAddress ])
+  [row] = await db.query('SELECT * FROM users WHERE walletAddress = ?', [ walletAddress ])
     console.log(row[0]);
     if (!row[0]) {
       console.log(row[0]);
