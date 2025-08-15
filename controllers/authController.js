@@ -1,12 +1,5 @@
-const careerModel = require('../models/careerModel')
+const authModel = require('../models/authModel')
 
-exports.getHomePage = (req, res) => {
-    try {
-        res.render('homepage', {pageTitle: 'Homepage', pageContent: 'Homepage for CareerChain Website'});
-    } catch (err) {
-        res.redirect('/error');
-    }
-}
 
 exports.getLoginPage = (req, res) => {
     try {
@@ -42,23 +35,11 @@ exports.registerAttempt = async (req, res) => {
             res.redirect('/register')
         }
 
-        await careerModel.registerUserToDatabase(username, password, walletAddress);
+        await authModel.registerUserToDatabase(username, password, walletAddress);
 
-        res.redirect('/')
+        res.redirect('/login')
     } catch (err) {
         req.flash('error', 'User Details Taken');
         res.redirect('/register')
     }
-}
-
-exports.getProfilePage = (req, res) => {
-    try {
-        res.render('profile', {pageTitle: req.params.username, pageContent: `${req.params.username}'s Profile Page`});
-    } catch (err) {
-        res.redirect('/error');
-    }
-}
-
-exports.getErrorPage = (req, res) => {
-    res.render('error', {pageTitle: 'Error', pageContent: 'Error getting your previous request'});
 }
