@@ -5,7 +5,12 @@
         <a href="/login">Login</a>
         <a href="/register">Register</a>
     <% } else { %>
-        <a href="/myprofile"><%= locals.username %></a>
+        <a href="/profile/<%= locals.username %>"><%= locals.username %></a>
+        <div>
+            <form action="/logout" method="POST">
+                <button type="submit">Log Out</button>
+            </form>
+        </div>
     <% } %>
     </nav>
 </header>

@@ -13,6 +13,8 @@ router.post('/login', passport.authenticate('local', {
     failureFlash: true
 }));
 
+router.post('/logout', careerController.logOut);
+
 router.get('/register', careerController.getRegisterPage);
 
 router.post('/register', careerController.registerAttempt);
