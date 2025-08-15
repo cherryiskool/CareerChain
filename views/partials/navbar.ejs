@@ -1,0 +1,11 @@
+<header>
+    <nav>  
+        <a href="/">Home</a>
+    <% if (!locals.username) { %>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+    <% } else { %>
+        <a href="/myprofile"><%= locals.username %></a>
+    <% } %>
+    </nav>
+</header>
