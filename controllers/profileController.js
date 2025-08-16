@@ -1,6 +1,5 @@
 const profileModel = require('../models/profileModel');
 const homeModel = require('../models/homeModel');
-const homeModel = require('../models/homeModel');
 
 exports.getProfilePage = async (req, res) => {
     try {
