@@ -1,5 +1,6 @@
 const profileModel = require('../models/profileModel');
 const homeModel = require('../models/homeModel');
+const homeModel = require('../models/homeModel');
 
 exports.getProfilePage = async (req, res) => {
     try {
@@ -125,6 +126,6 @@ exports.searchResults = async (req, res) => {
     } catch (err) {
         req.flash('error', err);
         console.log(err);
-        // res.redirect('back');
+        res.redirect('back');
     }
 }
