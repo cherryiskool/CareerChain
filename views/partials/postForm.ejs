@@ -1,0 +1,9 @@
+<div id="postForm">
+    <button hx-delete="/PostForm"
+            hx-target="#postForm">X</button>
+    <form action="/userPost" method="POST" enctype="application/x-www-form-urlencoded">
+        <label>Share Your Thoughts!</label>
+        <input type="text" name="postText" required>
+        <button type="submit">Post</button>
+    </form>
+</div>

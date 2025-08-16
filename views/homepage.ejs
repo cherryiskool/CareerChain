@@ -1,0 +1,20 @@
+<%- include('./partials/errorMessage.ejs') %>
+
+<!-- where the post form will be rendering in -->
+<div id="createPostContainer"></div>
+<!-- button to request the post form -->
+<button hx-get="/PostForm"
+        hx-target="#createPostContainer">Create Post</button>
+
+<% for (let post of posts) { %>
+<div class="postCard">
+        <div class="postCardUserDetails">
+                <div class="postCardPfp"></div>
+                <div class="postCardUsername"><%= post.username %></div>
+        </div>
+        <div class="postCardPostText"><%= post.postText %></div>
+        <div class="postCardLikeButton">
+                
+        </div>
+</div>
+<% } %>
