@@ -1,3 +1,5 @@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"></script>
+
 <h1><%= user.username %></h1>
 
 <div id="profileEditFormContainer">
@@ -5,3 +7,5 @@
 </div>
 <button hx-get="/editProfileForm"
         hx-target="#profileEditFormContainer">Edit</button>
+
+<script src="/scripts/editProfile.js"></script>

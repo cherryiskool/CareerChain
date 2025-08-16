@@ -32,5 +32,8 @@
     "passport-local": "^1.0.0",
     "sqlite3": "^5.1.7",
     "web3": "^4.16.0"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^6.1.0"
   }
 }

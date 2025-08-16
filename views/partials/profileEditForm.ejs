@@ -1,7 +1,7 @@
 <div id="editProfileForm">
     <button hx-delete="/editProfileForm"
             hx-target="#editProfileForm">X</button>
-    <form action="/editProfile" method="POST" enctype="application/x-www-form-urlencoded">
+    <form onsubmit="return deployContract(event)" action="/editProfileContractAddress" method="POST" enctype="application/x-www-form-urlencoded">
         <div id="editProfileFormEducation">
 
         </div>

@@ -1,0 +1,40 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "C:\\Users\\Vincent\\Python_Projects\\NCI_WebDev\\BlockchainTABACareer\\contracts\\cv.sol": {
+      "lastModificationDate": 1755356275938,
+      "contentHash": "309db2e03a3a373a07de63cfb0b36b4a",
+      "sourceName": "contracts/cv.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.8.0"
+      ],
+      "artifacts": [
+        "StoreCV"
+      ]
+    }
+  }
+}

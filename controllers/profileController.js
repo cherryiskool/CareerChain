@@ -45,3 +45,26 @@ exports.getEditProfileFormInput = (req, res) => {
         res.send('');
     }
 }
+
+exports.userDetails = (req, res) => {
+    try {
+        if(req.isAuthenticated()) {
+            res.json({success: true, username: req.user.username, walletAddress: req.user.walletAddress, contractAddress: req.user.contractAddress});
+        } else {
+            res.status(404).json({success: false, error: 'No Session User Found'});
+        }
+    } catch (err) {
+        res.status(500).json({success: false, error: err});
+    }
+}
+
+exports.editProfileContractAddress = async (req, res) => {
+    try {
+        console.log('entered this bitch', req.body)
+        await profileModel.updateUserContractAddress(req.body.contractAddress, req.user.id);
+        res.json({success: true});
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({success: false, error: err});
+    }
+}
