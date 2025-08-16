@@ -2,15 +2,20 @@
     <button hx-delete="/editProfileForm"
             hx-target="#editProfileForm">X</button>
     <form action="/editProfile" method="POST" enctype="application/x-www-form-urlencoded">
-        <label>Enter Your CV Details</label>
-        <input type="text" name="postText" required>
         <div id="editProfileFormEducation">
 
         </div>
-        
+        <button hx-get="/editProfileForm/EducationInput"
+                hx-target="#editProfileFormEducation"
+                hx-swap="beforeend">Add Education</button>
+
         <div id="editProfileFormWorkHistory">
 
         </div>
+        <button hx-get="/editProfileForm/WorkInput"
+        hx-target="#editProfileFormWorkHistory"
+        hx-swap="beforeend">Add Work History</button>
+
         <button type="submit">Save to BlockChain</button>
     </form>
 </div>

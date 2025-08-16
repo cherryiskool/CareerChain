@@ -25,3 +25,23 @@ exports.getProfileEditForm = (req, res) => {
 exports.removeProfileEditForm = (req, res) => {
     res.send('');
 }
+
+exports.getEditProfileFormInput = (req, res) => {
+    try {
+        if (req.isAuthenticated()) {
+            if (req.params.inputVariant == 'EducationInput') {
+                res.render('partials/educationInput', {pageTitle: req.params.username, pageContent: `${req.params.username}'s Profile Page`, user: user[0], layout: false});
+            }
+            else if (req.params.inputVariant == 'WorkInput') {
+                res.render('partials/workHistoryInput', {pageTitle: req.params.username, pageContent: `${req.params.username}'s Profile Page`, user: user[0], layout: false});
+            }
+            else {
+                res.send('');
+            }
+        } else {
+            res.send('')
+        }
+    } catch (err) {
+        res.send('');
+    }
+}

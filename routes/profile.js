@@ -9,4 +9,6 @@ router.get('/editProfileForm', profileController.getProfileEditForm);
 
 router.delete('/editProfileForm', profileController.removeProfileEditForm);
 
+router.get('/editProfileForm/:inputVariant', profileController.getEditProfileFormInput);
+
 module.exports = router;
