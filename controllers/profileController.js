@@ -46,7 +46,7 @@ exports.getEditProfileFormInput = (req, res) => {
     }
 }
 
-exports.userDetails = (req, res) => {
+exports.currentUserDetails = (req, res) => {
     try {
         if(req.isAuthenticated()) {
             res.json({success: true, username: req.user.username, walletAddress: req.user.walletAddress, contractAddress: req.user.contractAddress});
@@ -65,6 +65,19 @@ exports.editProfileContractAddress = async (req, res) => {
         res.json({success: true});
     } catch (err) {
         console.log(err);
+        res.status(500).json({success: false, error: err});
+    }
+}
+
+exports.userDetails = async (req, res) => {
+    try {
+        [user] = await profileModel.getUserByUsername(req.params.username);
+        if (user != null) {
+            res.json({success: true, contractAddress: user[0].contractAddress})
+        } else {
+            res.status(404).json({success: false, error: 'User not found'});
+        }
+    } catch (err) {
         res.status(500).json({success: false, error: err});
     }
 }

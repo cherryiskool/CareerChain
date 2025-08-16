@@ -217,7 +217,11 @@ const bytecode = "0x60806040523480156200001157600080fd5b506040516200105738038062
 
 
 const getCV = async () => {
-  let userDetailsRequest = await fetch('/userDetails');
+  const url = window.location.href;
+
+  let indexOfUrl = String(url).indexOf("profile/");
+  let user = String(url).slice(indexOfUrl + 8);
+  let userDetailsRequest = await fetch(`/userDetails/${user}`);
 
   if (!userDetailsRequest.ok) {
       userDetailsRequest = await userDetailsRequest.json();
@@ -278,7 +282,7 @@ const deployContract = async (event) => {
 
     try {
 
-        let userDetailsRequest = await fetch('/userDetails');
+        let userDetailsRequest = await fetch('/currentUserDetails');
 
         if (!userDetailsRequest.ok) {
             userDetailsRequest = await userDetailsRequest.json();

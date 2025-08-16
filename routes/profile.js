@@ -11,8 +11,10 @@ router.delete('/editProfileForm', profileController.removeProfileEditForm);
 
 router.get('/editProfileForm/:inputVariant', profileController.getEditProfileFormInput);
 
-router.get('/userDetails', profileController.userDetails);
+router.get('/currentUserDetails', profileController.currentUserDetails);
 
 router.post('/editProfileContractAddress', profileController.editProfileContractAddress);
+
+router.get('/userDetails/:username', profileController.userDetails);
 
 module.exports = router;

@@ -16,7 +16,11 @@
 <div id="profileEditFormContainer">
 
 </div>
-<button hx-get="/editProfileForm"
+
+<% if (locals.username == user.username) { %>
+        <button hx-get="/editProfileForm"
         hx-target="#profileEditFormContainer">Edit</button>
+<% } %>
+
 
 <script src="/scripts/editProfile.js"></script>

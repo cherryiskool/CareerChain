@@ -10,7 +10,7 @@
 <div class="postCard">
         <div class="postCardUserDetails">
                 <div class="postCardPfp"></div>
-                <div class="postCardUsername"><%= post.username %></div>
+                <div class="postCardUsername"><a href="/profile/<%= post.username %>"><%= post.username %></a></div>
         </div>
         <div class="postCardPostText"><%= post.postText %></div>
         <div class="postCardLikeButton">
