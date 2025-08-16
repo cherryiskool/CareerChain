@@ -29,7 +29,9 @@ app.use(expressLayouts);
 // tells express to use this directory for files
 app.use(express.static('public'));
 app.use(express.json());
+app.use(express.json());
 app.use(express.urlencoded({limit: '1mb', extended: false}));
+
 
 app.use(flash());
 
