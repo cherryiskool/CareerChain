@@ -17,4 +17,8 @@ router.post('/editProfileContractAddress', profileController.editProfileContract
 
 router.get('/userDetails/:username', profileController.userDetails);
 
+router.post('/search', profileController.search);
+
+router.get('/search/:searchQuery', profileController.searchResults);
+
 module.exports = router;

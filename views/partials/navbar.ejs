@@ -1,5 +1,9 @@
 <header>
-    <nav>  
+    <nav>
+        <form action="/search" method="POST" enctype="application/x-www-form-urlencoded">
+            <input type="text" name="searchQuery" required>
+            <button type="submit">Search</button>
+        </form>  
         <a href="/">Home</a>
     <% if (!locals.username) { %>
         <a href="/login">Login</a>

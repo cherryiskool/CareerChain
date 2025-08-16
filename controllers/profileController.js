@@ -1,4 +1,5 @@
 const profileModel = require('../models/profileModel');
+const homeModel = require('../models/homeModel');
 
 exports.getProfilePage = async (req, res) => {
     try {
@@ -79,5 +80,51 @@ exports.userDetails = async (req, res) => {
         }
     } catch (err) {
         res.status(500).json({success: false, error: err});
+    }
+}
+
+exports.search = async (req, res) => {
+    try {
+        res.redirect(`/search/${req.body.searchQuery}`)
+    } catch (err) {
+        req.flash('error', err);
+        res.redirect('back');
+    }
+}
+
+exports.searchResults = async (req, res) => {
+    try {
+        const searchQuery = req.params.searchQuery;
+        [usersPosts] = await homeModel.getAllPosts();
+        console.log('userpost', usersPosts);
+        let related = [];
+        let unrelated = [];
+        let finalQuery = [];
+
+        for (let userPost of usersPosts) {
+            
+            if (userPost.username.toUpperCase().match(searchQuery.toUpperCase())) {
+                related.push(userPost);
+            }
+            else if (userPost.postText != null) {
+                if(userPost.postText.toUpperCase().match(searchQuery.toUpperCase())){
+                    related.push(userPost);
+                } else {
+                    unrelated.push(userPost);
+                }
+            }
+            else {
+                unrelated.push(userPost);
+            }
+        }
+
+        finalQuery = related.concat(unrelated);
+
+        res.render('searchResults', {pageTitle: searchQuery, pageContent: `${searchQuery} Search Results`, posts: finalQuery})
+
+    } catch (err) {
+        req.flash('error', err);
+        console.log(err);
+        // res.redirect('back');
     }
 }

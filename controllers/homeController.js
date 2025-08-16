@@ -3,6 +3,12 @@ const homeModel = require('../models/homeModel');
 exports.getHomePage = async (req, res) => {
     try {
         [posts] = await homeModel.getAllPosts();
+
+        function removeNulls(post) {
+            return post.postId != null;
+        }
+        posts = posts.filter(removeNulls);
+        
         res.render('homepage', {pageTitle: 'Homepage', pageContent: 'Homepage for CareerChain Website', posts: posts});
     } catch (err) {
         res.redirect('/error');

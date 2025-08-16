@@ -10,7 +10,7 @@ exports.getAllPosts = async () => {
         users.pfp as "pfp", posts.id as "postId", posts.postText as "postText", \
         posts.dateOfUpload as "dateOfUpload" \
         FROM users \
-        JOIN posts \
+        LEFT JOIN posts \
         ON users.id = posts.posterId \
         ORDER BY posts.dateOfUpload \
         DESC')}
