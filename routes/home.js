@@ -12,4 +12,6 @@ router.delete('/PostForm', homeController.removePostForm)
 
 router.post('/userPost', homeController.createNewPost);
 
+router.post('/post/:action/:postId', homeController.toggleLike);
+
 module.exports = router;

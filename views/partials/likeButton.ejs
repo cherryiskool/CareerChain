@@ -1,0 +1,14 @@
+<div id="likeButtonContainer<%= postId %>">
+<p><%= likes %></p>
+<% if (!likedPosts.includes(postId)) { %>
+    <button class="likeButton"
+            hx-post="post/like/<%= postId %>"
+            hx-target="#likeButtonContainer<%= postId %>"
+            hx-swap="outerHTML">Like</button>
+<% } else { %>
+    <button class="likeButton"
+            hx-post="post/unlike/<%= postId %>"
+            hx-target="#likeButtonContainer<%= postId %>"
+            hx-swap="outerHTML">Dislike</button>
+<% } %>
+</div>

@@ -1,0 +1,21 @@
+#createPostContainer {
+    /* left: 50%;
+    transform: translate(-50%,0);
+    color: red; */
+}
+
+.postCardContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.postCard {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    padding: 10px;
+    
+    border-radius: 5px;
+    width: 50%;
+}

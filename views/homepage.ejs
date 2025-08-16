@@ -7,14 +7,30 @@
         hx-target="#createPostContainer">Create Post</button>
 
 <% for (let post of posts) { %>
-<div class="postCard">
-        <div class="postCardUserDetails">
-                <div class="postCardPfp"></div>
-                <div class="postCardUsername"><a href="/profile/<%= post.username %>"><%= post.username %></a></div>
-        </div>
-        <div class="postCardPostText"><%= post.postText %></div>
-        <div class="postCardLikeButton">
-                
-        </div>
+<div class="postCardContainer">
+	<div class="postCard">
+		<div class="postCardUserDetails">
+				<div class="postCardPfp"></div>
+				<div class="postCardUsername"><a href="/profile/<%= post.username %>"><%= post.username %></a></div>
+		</div>
+		<div class="postCardPostText"><%= post.postText %></div>
+		<div class="postCardLikeButton">
+
+			<div id="likeButtonContainer<%= post.postId %>">
+			<p><%= post.likes %></p>
+			<% if (!likedPosts.includes(post.postId)) { %>
+				<button class="likeButton"
+						hx-post="post/like/<%= post.postId %>"
+						hx-target="#likeButtonContainer<%= post.postId %>"
+						hx-swap="outerHTML">Like</button>
+			<% } else { %>
+				<button class="likeButton"
+						hx-post="post/unlike/<%= post.postId %>"
+						hx-target="#likeButtonContainer<%= post.postId %>"
+						hx-swap="outerHTML">Dislike</button>
+			<% } %>
+			</div>
+		</div>
+	</div>
 </div>
 <% } %>
