@@ -63,7 +63,6 @@ exports.createNewPost = async (req, res) => {
 exports.toggleLike = async (req, res) => {
     try {
         [posts] = await homeModel.getAllPosts();
-        console.log('test', posts.find(post => post.postId == req.params.postId));
         let likes = posts.find(post => post.postId == req.params.postId).likes;
 
         if (req.params.action == 'like' && req.isAuthenticated()) {
@@ -82,14 +81,12 @@ exports.toggleLike = async (req, res) => {
             likedPosts = likedPosts.map((x) => x.postId);
             res.render('partials/likeButton', {pageTitle: 'Homepage', pageContent: 'Homepage for CareerChain Website', postId: Number(req.params.postId), likes: likes, likedPosts: likedPosts, layout: false})
         } else {
-            [likedPosts] = await homeModel.getUsersLikes(req.user.id);
-            likedPosts = likedPosts.map((x) => x.postId);
+            likedPosts = []
             res.render('partials/likeButton', {pageTitle: 'Homepage', pageContent: 'Homepage for CareerChain Website', postId: Number(req.params.postId), likes: likes, likedPosts: likedPosts, layout: false})
 
         }
     } catch (err) {
-        [likedPosts] = await homeModel.getUsersLikes(req.user.id);
-        likedPosts = likedPosts.map((x) => x.postId);
+        likedPosts = []
         console.log(err)
         res.render('partials/likeButton', {pageTitle: 'Homepage', pageContent: 'Homepage for CareerChain Website', postId: Number(req.params.postId), likes: likes, likedPosts: likedPosts, layout: false})
 
