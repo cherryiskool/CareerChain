@@ -1,18 +1,18 @@
 <header>
     <nav>
-        <form action="/search" method="POST" enctype="application/x-www-form-urlencoded">
-            <input type="text" name="searchQuery" required>
-            <button type="submit">Search</button>
+        <form class="searchBar" action="/search" method="POST" enctype="application/x-www-form-urlencoded">
+            <input class="searchInput" type="text" name="searchQuery" required>
+            <button class="searchSubmit" type="submit">Search</button>
         </form>  
-        <a href="/">Home</a>
+        <a class="navbarLinks" href="/">Home</a>
     <% if (!locals.username) { %>
-        <a href="/login">Login</a>
-        <a href="/register">Register</a>
+        <a class="navbarLinks" href="/login">Login</a>
+        <a class="navbarLinks" href="/register">Register</a>
     <% } else { %>
-        <a href="/profile/<%= locals.username %>"><%= locals.username %></a>
+        <a class="navbarLinks" href="/profile/<%= locals.username %>"><%= locals.username %></a>
         <div>
             <form action="/logout" method="POST">
-                <button type="submit">Log Out</button>
+                <button class="navbarLinks logOut" type="submit">Log Out</button>
             </form>
         </div>
     <% } %>

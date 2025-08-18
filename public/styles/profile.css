@@ -1,0 +1,47 @@
+.profileCV {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profileCVDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#profileEditFormContainer {
+    
+
+}
+
+.editProfileFormAndX {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+        border: solid grey 1px;
+        padding: 10px;
+}
+
+.editProfileForm {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.cvInputDuos {
+    display: flex;
+    flex-direction: column;
+}
+
+.addInputButton {
+    /* position: absolute; */
+    bottom: 10%;
+    right: 5%;
+    padding: 5px;
+    border-radius: 25px;
+    border: none;
+    background-color: rgb(39, 63, 79);
+    color: white;
+    font-weight: bold;
+}

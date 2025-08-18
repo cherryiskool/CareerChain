@@ -1,9 +1,11 @@
 <div id="postForm">
-    <button hx-delete="/PostForm"
-            hx-target="#postForm">X</button>
-    <form action="/userPost" method="POST" enctype="application/x-www-form-urlencoded">
-        <label>Share Your Thoughts!</label>
-        <input type="text" name="postText" required>
-        <button type="submit">Post</button>
+    <button class="formExit"
+            hx-delete="/PostForm"
+            hx-target="#postForm"
+            hx-swap="outerHTML">X</button>
+    <form class="postInputAndSubmit" action="/userPost" method="POST" enctype="application/x-www-form-urlencoded">
+        <label class="postSubtitle">Share Your Thoughts!</label>
+        <textarea class="postInput" type="text" name="postText" required></textarea>
+        <button class="postSubmit" type="submit">Post</button>
     </form>
 </div>

@@ -1,34 +1,37 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"></script>
 
-<%- include('./partials/errorMessage.ejs')  %>
-
-<form action="/register" method="POST" enctype="application/x-www-form-urlencoded">
-    <div>
-        <!-- <button onclick="return connectMetamask(event)">Connect to MetaMask</button> -->
-        <input id="walletAddressRetrieveButton" type="button" onclick="connectMetamask()" value="Connect to MetaMask" name="walletAddress">
-
-    </div>
-    <div>
-        <label>Wallet Address</label>
-    </div>
-    <div>
-        <input id="walletAddressRegistration" type="text" name="walletAddress" readonly>
-    </div>
-    <div>
-        <label>Username</label>
-    </div>
-    <div>
-        <input type="text" id="registrationUsername" name="username" required>
-    </div>
-    <div>
-        <label>Password</label>
-    </div>
-    <div>
-        <input type="password" id="registrationPassword" name="password" required>
-    </div>
-    <div>
-        <button type="submit">Register</button>
-    </div>
-</form>
+<div class="authenticationPage">
+    <%- include('./partials/errorMessage.ejs')  %>
+    
+    <form class="authenticationForm" action="/register" method="POST" enctype="application/x-www-form-urlencoded">
+    
+        <div class="authenticationLabels">
+            <label>Wallet Address</label>
+        </div>
+        <div>
+            <!-- <button onclick="return connectMetamask(event)">Connect to MetaMask</button> -->
+            <input class="authenticationButtons"  id="walletAddressRetrieveButton" type="button" onclick="connectMetamask()" value="Connect to MetaMask" name="walletAddress">
+    
+        </div>
+        <div>
+            <input class="authenticationInput" id="walletAddressRegistration" type="text" name="walletAddress" readonly>
+        </div>
+        <div class="authenticationLabels">
+            <label>Username</label>
+        </div>
+        <div>
+            <input class="authenticationInput"  type="text" id="registrationUsername" name="username" required>
+        </div>
+        <div class="authenticationLabels">
+            <label>Password</label>
+        </div>
+        <div>
+            <input class="authenticationInput"  type="password" id="registrationPassword" name="password" required>
+        </div>
+        <div>
+            <button class="authenticationButtons"  type="submit">Register</button>
+        </div>
+    </form>
+</div>
 
 <script src="/scripts/register.js"></script>

@@ -1,21 +1,24 @@
-<div id="editProfileForm">
-    <button hx-delete="/editProfileForm"
-            hx-target="#editProfileForm">X</button>
-    <form onsubmit="return deployContract(event)" action="/editProfileContractAddress" method="POST" enctype="application/x-www-form-urlencoded">
+<div class="editProfileFormAndX" id="editProfileForm">
+    <button class="formExit" hx-delete="/editProfileForm"
+            hx-target="#editProfileForm"
+            hx-swap="outerHTML">X</button>
+    <form class="editProfileForm" onsubmit="return deployContract(event)" action="/editProfileContractAddress" method="POST" enctype="application/x-www-form-urlencoded">
         <div id="editProfileFormEducation">
 
         </div>
-        <button hx-get="/editProfileForm/EducationInput"
+        <button class="addInputButton"
+                hx-get="/editProfileForm/EducationInput"
                 hx-target="#editProfileFormEducation"
                 hx-swap="beforeend">Add Education</button>
 
         <div id="editProfileFormWorkHistory">
 
         </div>
-        <button hx-get="/editProfileForm/WorkInput"
-        hx-target="#editProfileFormWorkHistory"
-        hx-swap="beforeend">Add Work History</button>
-
-        <button type="submit">Save to BlockChain</button>
+        <button class="addInputButton"
+                hx-get="/editProfileForm/WorkInput"
+                hx-target="#editProfileFormWorkHistory"
+                hx-swap="beforeend">Add Work History</button>
+        <div></div>
+        <button class="addInputButton" type="submit">Save to BlockChain</button>
     </form>
 </div>

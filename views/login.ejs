@@ -1,28 +1,31 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"></script>
 
-<%- include('./partials/errorMessage.ejs')  %>
+<div class="authenticationPage">
+    <%- include('./partials/errorMessage.ejs')  %>
+    
+    <form class="authenticationForm" action="/login" method="POST" enctype="application/x-www-form-urlencoded">
+    
 
-<form action="/login" method="POST" enctype="application/x-www-form-urlencoded">
+        <div class="authenticationLabels">
+            <label>Wallet Address</label>
+        </div>
+        <div>
+            <input class="authenticationButtons" id="walletAddressRetrieveButton" type="button" onclick="connectMetamask()" value="Connect to MetaMask" name="walletAddress">
+        </div>
+        <div>
+            <input class="authenticationInput" id="walletAddressLogin" type="text" name="walletAddress" readonly>
+        </div>
     
-    <div>
-        <input id="walletAddressRetrieveButton" type="button" onclick="connectMetamask()" value="Connect to MetaMask" name="walletAddress">
-    </div>
-    <div>
-        <label>Wallet Address</label>
-    </div>
-    <div>
-        <input id="walletAddressLogin" type="text" name="walletAddress" readonly>
-    </div>
-    
-    <div>
-        <label>Password</label>
-    </div>
-    <div>
-        <input type="password" name="password" required>
-    </div>
-    <div>
-        <button type="submit">Log In</button>
-    </div>
-</form>
+        <div class="authenticationLabels">
+            <label>Password</label>
+        </div>
+        <div>
+            <input class="authenticationInput" type="password" name="password" required>
+        </div>
+        <div>
+            <button class="authenticationButtons" type="submit">Log In</button>
+        </div>
+    </form>
+</div>
 
 <script src="/scripts/login.js"></script>

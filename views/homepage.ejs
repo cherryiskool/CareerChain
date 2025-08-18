@@ -3,7 +3,8 @@
 <!-- where the post form will be rendering in -->
 <div id="createPostContainer"></div>
 <!-- button to request the post form -->
-<button hx-get="/PostForm"
+<button class="createPostButton"
+		hx-get="/PostForm"
         hx-target="#createPostContainer">Create Post</button>
 
 <% for (let post of posts) { %>
@@ -11,12 +12,12 @@
 	<div class="postCard">
 		<div class="postCardUserDetails">
 				<div class="postCardPfp"></div>
-				<div class="postCardUsername"><a href="/profile/<%= post.username %>"><%= post.username %></a></div>
+				<div class="postCardUsername"><a class="postCardUsername" href="/profile/<%= post.username %>"><%= post.username %></a></div>
 		</div>
 		<div class="postCardPostText"><%= post.postText %></div>
 		<div class="postCardLikeButton">
 
-			<div id="likeButtonContainer<%= post.postId %>">
+			<div class="likeButtonAndViews" id="likeButtonContainer<%= post.postId %>">
 			<p><%= post.likes %></p>
 			<% if (!likedPosts.includes(post.postId)) { %>
 				<button class="likeButton"

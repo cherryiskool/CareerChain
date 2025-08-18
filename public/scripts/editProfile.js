@@ -232,6 +232,9 @@ const getCV = async () => {
   const currentCV = userDetailsRequest.contractAddress;
 
   if (currentCV == '0x0000000000000000000000000000000000000000') {
+    let h4 = document.createElement("h4");
+    h4.innerHTML = "User has not uploaded CV";
+    document.getElementById("noCVMessage").append(h4);
     return
   }
 
@@ -247,7 +250,13 @@ const getCV = async () => {
   document.getElementById("profileEducation").append(p);
 
   for (let i = 0; i < educationAmount; i++) {
-    let p1 = document.createElement("p")
+    if (i == 0) {
+      let h3 = document.createElement("h3");
+      h3.innerHTML = "Education";
+      document.getElementById("profileEducation").append(h3);
+    }
+    let p1 = document.createElement("p");
+    p1.style.fontWeight = "bold";
     p1.innerHTML = await window.contract.methods.university(i).call();
     document.getElementById("profileEducation").append(p1);
 
@@ -261,7 +270,13 @@ const getCV = async () => {
   }
 
   for (let i = 0; i < workAmount; i++) {
+    if (i == 0) {
+      let h3 = document.createElement("h3");
+      h3.innerHTML = "Work History";
+      document.getElementById("profileWorkHistory").append(h3);
+    }
     let p4 = document.createElement("p")
+    p4.style.fontWeight = "bold"
     p4.innerHTML = await window.contract.methods.company(i).call();
     document.getElementById("profileWorkHistory").append(p4);
 

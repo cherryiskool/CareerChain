@@ -1,25 +1,32 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"></script>
 
-<h1><%= user.username %></h1>
 
-<div id="userDetails">
-        
-</div>
 
-<div id="profileEducation">
-
-</div>
-<div id="profileWorkHistory">
-
-</div>
-
-<div id="profileEditFormContainer">
-
+<div class="profileCV">
+	<h1><%= user.username %></h1>
+	<div id="noCVMessage"></div>
+	<div class="profileCVDetails">
+		<div id="userDetails">
+		
+		</div>
+		
+		<div id="profileEducation">
+		
+		</div>
+		<div id="profileWorkHistory">
+		
+		</div>
+		
+		<div id="profileEditFormContainer">
+		
+		</div>
+	</div>
 </div>
 
 <% if (locals.username == user.username) { %>
-        <button hx-get="/editProfileForm"
-        hx-target="#profileEditFormContainer">Edit</button>
+	<button class="createPostButton" 
+			hx-get="/editProfileForm"
+			hx-target="#profileEditFormContainer">Save CV to Blockchain</button>
 <% } %>
 
 

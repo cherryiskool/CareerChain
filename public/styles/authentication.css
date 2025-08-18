@@ -1,0 +1,43 @@
+.authenticationPage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+}
+
+.authenticationForm {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+
+.authenticationLabels {
+    font-weight: bold;
+}
+
+.authenticationButtons {
+    align-self: flex-end;
+    border: none;
+    background-color: rgb(39, 63, 79);
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 25px;
+}
+
+.authenticationButtons:hover {
+    background-color: grey;
+}
+
+.authenticationButtons:focus {
+    background-color: lightgrey;
+}
+
+.authenticationInput {
+    padding: 3px;
+    border-radius: 25px;
+    /* border: none; */
+    padding-left: 10px;
+    background-color: light grey;
+}
