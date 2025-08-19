@@ -25,7 +25,6 @@ exports.getRegisterPage = (req, res) => {
 
 exports.registerAttempt = async (req, res) => {
     try {
-        console.log('testing shit', req.body);
         const username = req.body.username;
         const password = req.body.password;
         const walletAddress = req.body.walletAddress;

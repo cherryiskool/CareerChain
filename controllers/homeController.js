@@ -4,23 +4,23 @@ exports.getHomePage = async (req, res) => {
     try {
         [posts] = await homeModel.getAllPosts();
 
+        // this was used to not display user profiles as get all posts also gets all users
         function removeNulls(post) {
             return post.postId != null;
         }
         posts = posts.filter(removeNulls);
         
+
         if (req.isAuthenticated()) {
             [likedPosts] = await homeModel.getUsersLikes(req.user.id);
+            // only need the integer of the liked post to check on the front end if a post is liked or not
             likedPosts = likedPosts.map((x) => x.postId);
         } else {
             likedPosts = [];
         }
-        console.log('liked', likedPosts)
-
 
         res.render('homepage', {pageTitle: 'Homepage', pageContent: 'Homepage for CareerChain Website', posts: posts, likedPosts: likedPosts});
     } catch (err) {
-        console.log('error that is fucking up the EB', err);
         res.redirect('/error');
     }
 }
@@ -64,8 +64,10 @@ exports.createNewPost = async (req, res) => {
 exports.toggleLike = async (req, res) => {
     try {
         [posts] = await homeModel.getAllPosts();
+        // get the likes of the post that is getting its like toggled
         let likes = posts.find(post => post.postId == req.params.postId).likes;
 
+        // if the request specifies like
         if (req.params.action == 'like' && req.isAuthenticated()) {
             await homeModel.setLiked(req.user.id, req.params.postId);
             await homeModel.addLike(req.params.postId);

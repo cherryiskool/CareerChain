@@ -7,16 +7,22 @@
 		hx-get="/PostForm"
         hx-target="#createPostContainer">Create Post</button>
 
+		<!-- for every post -->
 <% for (let post of posts) { %>
+	<!-- create a container -->
 <div class="postCardContainer">
+	<!-- that holds a card -->
 	<div class="postCard">
+		<!-- containing the user's profile picture as wel as username -->
 		<div class="postCardUserDetails">
 				<div class="postCardPfp">
 					<img class="profilePfp" src="https://bucketcareerchain.s3.us-east-1.amazonaws.com/profilePictures/<%= post.pfp %>">
 				</div>
 				<div class="postCardUsername"><a class="postCardUsername" href="/profile/<%= post.username %>"><%= post.username %></a></div>
 		</div>
+		<!-- the text of the post they created -->
 		<div class="postCardPostText"><%= post.postText %></div>
+		<!-- and the like counter as well as the like/dislike button depending on whether they liked it or not -->
 		<div class="postCardLikeButton">
 
 			<div class="likeButtonAndViews" id="likeButtonContainer<%= post.postId %>">

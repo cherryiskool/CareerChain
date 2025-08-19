@@ -5,6 +5,7 @@
             <button class="searchSubmit" type="submit">Search</button>
         </form>  
         <a class="navbarLinks" href="/">Home</a>
+        <!-- if the user is signed in -->
     <% if (!locals.username) { %>
         <a class="navbarLinks" href="/login">Login</a>
         <a class="navbarLinks" href="/register">Register</a>

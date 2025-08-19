@@ -66,7 +66,6 @@ exports.currentUserDetails = (req, res) => {
 
 exports.editProfileContractAddress = async (req, res) => {
     try {
-        console.log('entered this bitch', req.body)
         await profileModel.updateUserContractAddress(req.body.contractAddress, req.user.id);
         res.json({success: true});
     } catch (err) {
@@ -93,7 +92,7 @@ exports.search = async (req, res) => {
         res.redirect(`/search/${req.body.searchQuery}`)
     } catch (err) {
         req.flash('error', err);
-        res.redirect('back');
+        res.redirect('/error');
     }
 }
 
@@ -101,20 +100,24 @@ exports.searchResults = async (req, res) => {
     try {
         const searchQuery = req.params.searchQuery;
         [usersPosts] = await homeModel.getAllPosts();
-        console.log('userpost', usersPosts);
         let related = [];
         let unrelated = [];
         let finalQuery = [];
 
+        // loop over all posts and users
         for (let userPost of usersPosts) {
-            
+            // if a username matches the query add them to the related array
             if (userPost.username.toUpperCase().match(searchQuery.toUpperCase())) {
                 related.push(userPost);
             }
+            //  if the post text exists i.e. the user has made a post before
             else if (userPost.postText != null) {
+                // add them to the related if there is a match within the post text
                 if(userPost.postText.toUpperCase().match(searchQuery.toUpperCase())){
                     related.push(userPost);
-                } else {
+                } 
+                // otherwise dont
+                else {
                     unrelated.push(userPost);
                 }
             }
@@ -122,7 +125,7 @@ exports.searchResults = async (req, res) => {
                 unrelated.push(userPost);
             }
         }
-
+        // adds the unrelated posts under the related posts
         finalQuery = related.concat(unrelated);
 
         res.render('searchResults', {pageTitle: searchQuery, pageContent: `${searchQuery} Search Results`, posts: finalQuery})
@@ -136,7 +139,6 @@ exports.searchResults = async (req, res) => {
 exports.editPfpAndBio = async (req, res) => {
     try {
         let pfp = req.file;
-        console.log('pgpgpgp', pfp == null)
         let pfpFilename;
         if (pfp == null) {
             pfpFilename = 'Default_pfp.jpg';
@@ -151,9 +153,9 @@ exports.editPfpAndBio = async (req, res) => {
             bio = req.user.bio;
         }
 
-        console.log('bio', bio)
         await profileModel.updateUserPfpAndBio(req.user.id, pfpFilename, bio);
 
+        // parameters used to send the correct bucket the file as well as name the file
         if (pfp != null) {
             const params = {
                 Bucket: process.env.BUCKET_NAME,
@@ -161,7 +163,7 @@ exports.editPfpAndBio = async (req, res) => {
                 Body: pfp.buffer,
                 ContentType: pfp.mimetype
             }
-
+            //  s3 is a client created in the profilebucket config file which allows sending the bucket the file
             await s3.send(new PutObjectCommand(params));
         }
 

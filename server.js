@@ -46,6 +46,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 require('./config/passport');
 
+// allows me to access the user's username on any EJS page
 app.use(function(req, res, next) {
   try {
     res.locals.username = req.user.username;

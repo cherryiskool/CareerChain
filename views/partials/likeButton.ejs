@@ -1,5 +1,7 @@
+<!-- this is rendered in to replace the like button interface on the home page -->
 <div class="likeButtonAndViews" id="likeButtonContainer<%= postId %>">
 <p><%= likes %></p>
+<!-- determines if a like or dislike button is shown (back end sends likedPosts which is an array of postIds of the posts that the current user has liked)-->
 <% if (!likedPosts.includes(postId)) { %>
     <button class="likeButton"
             hx-post="post/like/<%= postId %>"

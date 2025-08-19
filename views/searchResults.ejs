@@ -1,4 +1,4 @@
-
+<!-- copied from the home page though it has a change shown below -->
 <% for (let post of posts) { %>
 <div class="postCardContainer">
 	<div class="postCard">
@@ -8,6 +8,7 @@
 		</div>
 		<div class="postCardPostText"><%= post.postText %></div>
 		<div class="postCardLikeButton">
+			<!-- if the row has a post (not a user who has never posted before) -->
                         <% if (post.postId) { %>
 			<div id="likeButtonContainer<%= post.postId %>">
 			<p><%= post.likes %></p>
