@@ -11,3 +11,9 @@ exports.updateUserContractAddress = async (contractAddress, userId) => {
         [ contractAddress, userId ]
     )
 }
+
+exports.updateUserPfpAndBio = async (userId, pfp, bio) => {
+    return await db.query('UPDATE users SET users.pfp = ?, users.bio = ? WHERE users.id = ?',
+        [ pfp, bio, userId ]
+    )
+}

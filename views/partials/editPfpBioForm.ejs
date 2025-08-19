@@ -1,0 +1,16 @@
+<div class="editProfileFormAndX" id="editBioPfp">
+    <button class="formExit" hx-delete="/editPfpAndBio"
+            hx-target="#editBioPfp"
+            hx-swap="outerHTML">X</button>
+    <form class="editProfileForm" action="/editPfpAndBio" method="POST" enctype="multipart/form-data">
+        <div class="cvInputDuos">
+            <label class="authenticationLabels">Biography</label>
+            <input class="authenticationInput" type="text" class="workHistoryCompany" name="bio">
+        </div>    
+        <div class="cvInputDuos">
+            <label class="authenticationLabels">Profile Picture</label>
+            <input type="file" class="workHistoryCompany" name="pfp">
+        </div>
+        <button class="addInputButton" type="submit">Save</button>
+    </form>
+</div>

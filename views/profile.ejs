@@ -3,7 +3,11 @@
 
 
 <div class="profileCV">
-	<h1><%= user.username %></h1>
+	<div class="profileUsernamePfp">
+		<img class="profilePfp" src="https://bucketcareerchain.s3.us-east-1.amazonaws.com/profilePictures/<%= user.pfp %>">
+		<h1><%= user.username %></h1>
+	</div>
+	<p><%= user.bio %></p>
 	<div id="noCVMessage"></div>
 	<div class="profileCVDetails">
 		<div id="userDetails">
@@ -20,6 +24,10 @@
 		<div id="profileEditFormContainer">
 		
 		</div>
+
+		<div id="editPfpBioFormContainer">
+
+		</div>
 	</div>
 </div>
 
@@ -27,6 +35,10 @@
 	<button class="createPostButton" 
 			hx-get="/editProfileForm"
 			hx-target="#profileEditFormContainer">Save CV to Blockchain</button>
+
+	<button class="addEditBioButton"
+			hx-get="/editPfpAndBio"
+			hx-target="#editPfpBioFormContainer">Edit Profile</button>
 <% } %>
 
 

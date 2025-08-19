@@ -1,4 +1,4 @@
-<div>
+<div id="workHistoryInputContainer">
     <div class="cvInputDuos">
         <label>Company</label>
         <input type="text" class="workHistoryCompany" required>
@@ -11,4 +11,12 @@
         <label>Duration</label>
         <input type="text" class="workHistoryDuration" required>
     </div>
+
+    <div>
+        <button class="addInputButton"
+                hx-delete="/editProfileForm/workHistory"
+                hx-target="#workHistoryInputContainer"
+                hx-swap="outerHTML">Remove Input</button>
+    </div>
+
 </div>

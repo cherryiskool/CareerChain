@@ -20,6 +20,7 @@ exports.getHomePage = async (req, res) => {
 
         res.render('homepage', {pageTitle: 'Homepage', pageContent: 'Homepage for CareerChain Website', posts: posts, likedPosts: likedPosts});
     } catch (err) {
+        console.log('error that is fucking up the EB', err);
         res.redirect('/error');
     }
 }

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { upload } = require('../config/profileBucket');
 
 const profileController = require('../controllers/profileController');
 
@@ -20,5 +21,13 @@ router.get('/userDetails/:username', profileController.userDetails);
 router.post('/search', profileController.search);
 
 router.get('/search/:searchQuery', profileController.searchResults);
+
+router.post('/editPfpAndBio', upload.single('pfp'), profileController.editPfpAndBio);
+
+router.get('/editPfpAndBio', profileController.getPfpBioEditForm);
+
+router.delete('/editPfpAndBio', profileController.removePfpBioEditForm);
+
+router.delete('/editProfileForm/:inputVariant', profileController.removeEditProfileFormInput);
 
 module.exports = router;

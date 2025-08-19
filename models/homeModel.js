@@ -17,7 +17,7 @@ exports.getAllPosts = async () => {
 }
 
 exports.getUsersLikes = async (userId) => {
-    return await db.query('SELECT postId from LIKES WHERE userId = ?',
+    return await db.query('SELECT postId from likes WHERE userId = ?',
         [ userId ]
     );
 }

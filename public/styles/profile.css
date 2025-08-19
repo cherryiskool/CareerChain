@@ -4,6 +4,17 @@
     align-items: center;
 }
 
+.profileUsernamePfp {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profilePfp {
+    height: 35px;
+    width: 35px;
+}
+
 .profileCVDetails {
     display: flex;
     flex-direction: column;
@@ -44,4 +55,28 @@
     background-color: rgb(39, 63, 79);
     color: white;
     font-weight: bold;
+}
+
+.addEditBioButton {
+    position: absolute;
+    bottom: 15%;
+    right: 5%;
+    padding: 5px;
+    border-radius: 25px;
+    border: none;
+    background-color: rgb(39, 63, 79);
+    color: white;
+    font-weight: bold;
+}
+
+#workHistoryInputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#educationHistoryInputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }

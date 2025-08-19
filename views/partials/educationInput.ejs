@@ -1,4 +1,4 @@
-<div>
+<div id="educationHistoryInputContainer">
     <div class="cvInputDuos">
         <label>University</label>
         <input type="text" class="educationUniversity" required>
@@ -10,5 +10,12 @@
     <div class="cvInputDuos">
         <label>Level of Degree</label>
         <input type="text" class="educationLevelOfDegree" required>
+    </div>
+
+    <div>
+        <button class="addInputButton"
+                hx-delete="/editProfileForm/educationHistory"
+                hx-target="#educationHistoryInputContainer"
+                hx-swap="outerHTML">Remove Input</button>
     </div>
 </div>

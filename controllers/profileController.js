@@ -1,5 +1,10 @@
 const profileModel = require('../models/profileModel');
 const homeModel = require('../models/homeModel');
+const path = require('path');
+const { v4:uuidv4 } = require('uuid');
+const { PutObjectCommand } = require('@aws-sdk/client-s3');
+const { s3 } = require('../config/profileBucket');
+
 
 exports.getProfilePage = async (req, res) => {
     try {
@@ -124,7 +129,63 @@ exports.searchResults = async (req, res) => {
 
     } catch (err) {
         req.flash('error', err);
-        console.log(err);
-        res.redirect('back');
+        res.redirect('/error');
     }
+}
+
+exports.editPfpAndBio = async (req, res) => {
+    try {
+        let pfp = req.file;
+        console.log('pgpgpgp', pfp == null)
+        let pfpFilename;
+        if (pfp == null) {
+            pfpFilename = 'Default_pfp.jpg';
+        } else {
+            const fileExt = path.extname(pfp.originalname);
+            pfpFilename = `${uuidv4()}${fileExt}`;
+        }
+
+        let bio = req.body.bio;
+        console.log('bio', bio)
+        if (bio == "") {
+            bio = req.user.bio;
+        }
+
+        console.log('bio', bio)
+        await profileModel.updateUserPfpAndBio(req.user.id, pfpFilename, bio);
+
+        if (pfp != null) {
+            const params = {
+                Bucket: process.env.BUCKET_NAME,
+                Key: `profilePictures/${pfpFilename}`,
+                Body: pfp.buffer,
+                ContentType: pfp.mimetype
+            }
+
+            await s3.send(new PutObjectCommand(params));
+        }
+
+
+        res.redirect(`/profile/${req.user.username}`);
+
+    } catch (err) {
+        console.log(err)
+        res.redirect('/error');
+    }
+}
+
+exports.getPfpBioEditForm = async (req, res) => {
+    try {
+        res.render('partials/editPfpBioForm', {pageTitle: req.params.username, pageContent: `${req.params.username}'s Profile Page`, user: user[0], layout: false})
+    } catch (err) {
+        res.send('');
+    }
+}
+
+exports.removePfpBioEditForm = async (req, res) => {
+    res.send('');
+}
+
+exports.removeEditProfileFormInput = async (req, res) => {
+    res.send('');
 }
